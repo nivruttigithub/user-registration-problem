@@ -32,10 +32,20 @@ public class UserRegistration {
         boolean check = pattern.matcher(email).matches();
         return check;
     }
+
+    // UC4: Validate mobile number (e.g., 91 9919819801)
+    public boolean validateMobileNumber(String mobileNumber) {
+        // Regex to match country code (91), space, and a 10-digit number
+        String regex = "^[0-9]{2} [0-9]{10}$";
+        Pattern pattern = Pattern.compile(regex);
+        boolean check = pattern.matcher(mobileNumber).matches();
+        return check;
+    }
     public static void main(String[] args) {
         UserRegistration userRegistration=new UserRegistration();
         System.out.println(userRegistration.validateFirstName("Nivrutti"));
         System.out.println(userRegistration.validateLastName("Wagh"));
         System.out.println(userRegistration.validateEmail("abc.xyz@bl.co.in"));
+        System.out.println(userRegistration.validateMobileNumber("91 9919819801"));
     }
 }

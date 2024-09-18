@@ -53,4 +53,28 @@ public class UserRegistrationTest {
         boolean result = user.validateEmail("abc.xyz@bl@co.in");
         Assertions.assertFalse(result);
     }
+
+    // Test case for correct mobile number
+    @Test
+    public void MobileNumberCorrectTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validateMobileNumber("91 9919819801");
+        Assertions.assertTrue(result);
+    }
+
+    // Test case for incorrect mobile number (missing space)
+    @Test
+    public void MobileNumberIncorrectTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validateMobileNumber("919919819801");  // No space between country code and number
+        Assertions.assertFalse(result);
+    }
+
+    // Test case for incorrect mobile number (less than 10 digits)
+    @Test
+    public void MobileNumberShortTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validateMobileNumber("91 99198198");  // Less than 10 digits
+        Assertions.assertFalse(result);
+    }
 }
