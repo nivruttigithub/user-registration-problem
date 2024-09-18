@@ -77,4 +77,20 @@ public class UserRegistrationTest {
         boolean result = user.validateMobileNumber("91 99198198");  // Less than 10 digits
         Assertions.assertFalse(result);
     }
+
+    // Test case for correct password (minimum 8 characters)
+    @Test
+    public void PasswordCorrectTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validatePassword("Password123");
+        Assertions.assertTrue(result);
+    }
+
+    // Test case for incorrect password (less than 8 characters)
+    @Test
+    public void PasswordIncorrectTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validatePassword("Pass12");
+        Assertions.assertFalse(result);
+    }
 }

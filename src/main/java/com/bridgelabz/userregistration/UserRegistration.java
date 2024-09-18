@@ -41,11 +41,20 @@ public class UserRegistration {
         boolean check = pattern.matcher(mobileNumber).matches();
         return check;
     }
+
+    // UC5: Validate password (minimum 8 characters)
+    public boolean validatePassword(String password) {
+
+        String regex = "^.{8,}$";  // At least 8 characters
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(password).matches();
+    }
     public static void main(String[] args) {
         UserRegistration userRegistration=new UserRegistration();
         System.out.println(userRegistration.validateFirstName("Nivrutti"));
         System.out.println(userRegistration.validateLastName("Wagh"));
         System.out.println(userRegistration.validateEmail("abc.xyz@bl.co.in"));
         System.out.println(userRegistration.validateMobileNumber("91 9919819801"));
+        System.out.println(userRegistration.validatePassword("Password123"));
     }
 }
