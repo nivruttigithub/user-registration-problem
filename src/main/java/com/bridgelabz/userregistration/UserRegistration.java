@@ -45,7 +45,7 @@ public class UserRegistration {
     // UC5: Validate password (minimum 8 characters)
     public boolean validatePassword(String password) {
 
-        String regex = "^.{8,}$";  // At least 8 characters
+        String regex = "^(?=.*[A-Z]).{8,}$";  // At least 8 characters
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(password).matches();
     }

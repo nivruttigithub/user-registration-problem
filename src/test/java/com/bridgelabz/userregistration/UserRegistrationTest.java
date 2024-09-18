@@ -78,7 +78,7 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
-    // Test case for correct password (minimum 8 characters)
+    // Test case for correct password (minimum 8 characters , atleast 1 UpperCase letter)
     @Test
     public void PasswordCorrectTest() {
         UserRegistration user = new UserRegistration();
@@ -91,6 +91,14 @@ public class UserRegistrationTest {
     public void PasswordIncorrectTest() {
         UserRegistration user = new UserRegistration();
         boolean result = user.validatePassword("Pass12");
+        Assertions.assertFalse(result);
+    }
+
+    // Test case for incorrect password (missing uppercase letter)
+    @Test
+    public void PasswordMissingUpperCaseTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validatePassword("password123");  // No uppercase letter
         Assertions.assertFalse(result);
     }
 }
