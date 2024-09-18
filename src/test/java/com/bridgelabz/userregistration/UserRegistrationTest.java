@@ -78,11 +78,11 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
-    // Test case for correct password (minimum 8 characters , atleast 1 UpperCase letter & atleast 1 numeric)
+    // Test case for correct password (minimum 8 characters , atleast 1 UpperCase letter & atleast 1 numeric , atleast 1 Special Character)
     @Test
     public void PasswordCorrectTest() {
         UserRegistration user = new UserRegistration();
-        boolean result = user.validatePassword("Password123");
+        boolean result = user.validatePassword("Password@123");
         Assertions.assertTrue(result);
     }
 
@@ -90,7 +90,7 @@ public class UserRegistrationTest {
     @Test
     public void PasswordIncorrectTest() {
         UserRegistration user = new UserRegistration();
-        boolean result = user.validatePassword("Pass12");
+        boolean result = user.validatePassword("Pass@2");
         Assertions.assertFalse(result);
     }
 
@@ -98,14 +98,30 @@ public class UserRegistrationTest {
     @Test
     public void PasswordMissingUpperCaseTest() {
         UserRegistration user = new UserRegistration();
-        boolean result = user.validatePassword("password123");  // No uppercase letter
+        boolean result = user.validatePassword("password@123");  // No uppercase letter
         Assertions.assertFalse(result);
     }
     // Test case for incorrect password (missing numeric digit)
     @Test
     public void PasswordMissingNumberTest() {
         UserRegistration user = new UserRegistration();
-        boolean result = user.validatePassword("Password");  // No numeric digit
+        boolean result = user.validatePassword("Password@");  // No numeric digit
+        Assertions.assertFalse(result);
+    }
+
+    // Test case for incorrect password (no special character)
+    @Test
+    public void PasswordNoSpecialCharTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validatePassword("Password1");  // No special character
+        Assertions.assertFalse(result);
+    }
+
+    // Test case for incorrect password (more than 1 special character)
+    @Test
+    public void PasswordTooManySpecialCharsTest() {
+        UserRegistration user = new UserRegistration();
+        boolean result = user.validatePassword("Password@1!");  // More than 1 special character
         Assertions.assertFalse(result);
     }
 }

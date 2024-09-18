@@ -42,12 +42,22 @@ public class UserRegistration {
         return check;
     }
 
-    // UC5 , UC6 & UC7 : Validate password (minimum 8 characters , atleast i UpperCase letter & atleast 1 numeric number)
+    // UC5, UC6, UC7, & UC8: Validate password (minimum 8 characters, at least 1 uppercase letter, 1 numeric digit, and exactly 1 special character)
     public boolean validatePassword(String password) {
-
-        String regex = "^(?=.*[A-Z])(?=.*\\d).{8,}$";  // At least 8 characters ,1 UpperCase , 1 numeric
+        // Regex to ensure the password has at least 8 characters, 1 uppercase letter, 1 numeric digit, and exactly 1 special character
+        String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,}$";  // At least 1 uppercase, 1 numeric digit, 1 special character, minimum 8 characters
         Pattern pattern = Pattern.compile(regex);
-        return pattern.matcher(password).matches();
+        if (pattern.matcher(password).matches()) {
+            // Check for exactly one special character
+            int specialCharCount = 0;
+            for (char c : password.toCharArray()) {
+                if (!Character.isLetterOrDigit(c)) {
+                    specialCharCount++;
+                }
+            }
+            return specialCharCount == 1;
+        }
+        return false;
     }
     public static void main(String[] args) {
         UserRegistration userRegistration=new UserRegistration();
