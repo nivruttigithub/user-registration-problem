@@ -124,4 +124,20 @@ public class UserRegistrationTest {
         boolean result = user.validatePassword("Password@1!");  // More than 1 special character
         Assertions.assertFalse(result);
     }
+   // test case for All Sample email
+    @Test
+    public void AllEmailSamplesCorrectTest() {
+        UserRegistration user=new UserRegistration();
+        Assert.assertTrue(user.validateAllEmailSamples("abc@yahoo.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc-100@yahoo.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc.100@yahoo.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc111@abc.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc-100@abc.net"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc.100@abc.com.au"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc@1.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc@gmail.com.com"));
+        Assert.assertTrue(user.validateAllEmailSamples("abc+100@gmail.com.com"));
+    }
+
+
 }

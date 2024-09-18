@@ -1,5 +1,6 @@
 package com.bridgelabz.userregistration;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
@@ -59,6 +60,15 @@ public class UserRegistration {
         }
         return false;
     }
+    //Method for All Sample Email
+    public boolean validateAllEmailSamples(String email) {
+        String regex = "[a-zA-Z0-9_.]*[-]*[+]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+";
+        Pattern pattern=Pattern.compile(regex);
+        Matcher matcher=pattern.matcher(email);
+        boolean check=pattern.matcher(email).matches();
+        return check;
+    }
+
     public static void main(String[] args) {
         UserRegistration userRegistration=new UserRegistration();
         System.out.println(userRegistration.validateFirstName("Nivrutti"));
