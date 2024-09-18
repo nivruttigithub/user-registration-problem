@@ -42,10 +42,10 @@ public class UserRegistration {
         return check;
     }
 
-    // UC5: Validate password (minimum 8 characters)
+    // UC5 , UC6 & UC7 : Validate password (minimum 8 characters , atleast i UpperCase letter & atleast 1 numeric number)
     public boolean validatePassword(String password) {
 
-        String regex = "^(?=.*[A-Z]).{8,}$";  // At least 8 characters
+        String regex = "^(?=.*[A-Z])(?=.*\\d).{8,}$";  // At least 8 characters ,1 UpperCase , 1 numeric
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(password).matches();
     }
